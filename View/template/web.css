@@ -1,0 +1,79 @@
+		#posit{
+			position:absolute;
+			left:18%;
+			top: 13%;
+			width:900px;
+		}
+		.name{
+			font-size:30px;
+			color:red;
+		}
+		.ename{
+			font-size:25px;
+		}
+		#show{
+			font-size: 20px;
+			position: relative;
+			left: 35%;
+		}
+		.lishow{
+			margin: 1px 4px 1px 4px;
+			padding: 1px 2px 1px 1px;
+			width: 20px;
+			color:white;
+		}
+		#table_show{
+			background:green;
+		}
+		.o{
+			width: 50px;
+			text-align:center;
+			border:5px solid white;
+		}
+		#food{
+			color:green;
+		}
+		.edit{
+			float:right;
+			margin: 1px;
+		}
+		.food_page{
+			width: 150px;
+			display: inline;
+		}
+		.food_info{
+			margin: 5px;
+			font-size: 20px;
+		}
+		.group{
+			font-size:20px;
+		}
+		.info{
+			font-size:13px;
+				color:green;
+		}
+		#menu{
+			width: 300px;
+		}
+		.he{
+			width: 120px;
+			text-align:center;
+			color: green;
+			font-size: 20px;
+		}
+		.time{
+			color: red;
+			font-size: 17px;
+			height: 100px;
+			text-align:center;
+		}
+		.suggest{
+			display: inline;
+			position: absolute;
+			left: 70%;
+			top: 10%;
+			background: yellow;
+		}
+		.author{
+			text-align:right;
+		}

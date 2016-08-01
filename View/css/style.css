@@ -1,0 +1,71 @@
+body{
+	padding-top:70px;
+	background-image: url("../image/2.jpg");
+	background-repeat: repeat-xy;
+}
+.main-body{
+	color:white;
+	background:rgba(0,0,0,.6);
+	width:95%;
+	margin-left:2%;
+	margin-right:5%;
+	padding: 1%;
+}
+.carousel-caption {
+	background: black;
+	background: linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+	background: -webkit-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+	background: -moz-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
+	left:0%;
+	right:0%;
+	bottom:0%;
+}
+.news{
+	background:white;
+	height:inherit;
+}
+.form-horizontal{
+	padding-top:5%;
+}
+.form-group{
+	margin:0;
+	background:rgba(0,0,0,.5);
+}
+.text-success{
+	color:rgb(0, 255, 0);
+}
+.text-info{
+	color:rgb(0, 153, 255);
+}
+.text-danger{
+	color:rgb(255, 10, 10);
+}
+.text-warning{
+	color:yellow;
+}
+.form-body{
+	color:white;
+}
+.form-group{
+	background:0;
+}
+.list-group-item{
+	background:rgba(0,0,0,.8);
+	padding-bottom:2%;
+	margin-top:0.8%;
+}
+table{
+	background:rgba(0,0,0,.6);
+}
+tr:hover{
+	background-color:rgba(0,0,0,1);
+}
+th{
+	color:rgb(0, 255, 0);
+}
+.ingredient{
+	color:white;
+}
+a{
+	color:white;
+}
