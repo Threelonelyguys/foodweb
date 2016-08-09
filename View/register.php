@@ -20,19 +20,19 @@
 		<div class="form-group">
 			<label for="username" class="col-sm-offset-2 col-sm-2 control-label">Tên tài khoản</label>
 			<div class="col-sm-4">
-				<input type="text" placeholder="Tên tài khoản" name="username" id="username" class="form-control"><br><?php if (isset($_SESSION['user_error'])) echo "<span class='error'>*". $_SESSION['user_error']."</span>";?><br>
+				<input type="text" placeholder="Tên tài khoản" name="username" id="username" class="form-control"><br><?php if (isset($_SESSION['user_error'])) echo "<span class='text-danger'>*". $_SESSION['user_error']."</span>";?><br>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="pwd" class="col-sm-offset-2 col-sm-2 control-label">Mật khẩu</label>
 			<div class="col-sm-4">
-				<input type="password" placeholder="Mật khẩu" name="password" id="pwd" class="form-control"><br><?php if (isset($_SESSION['pass_error']) ) echo "<span class='error'>*". $_SESSION['pass_error']."</span>"; ?><br>
+				<input type="password" placeholder="Mật khẩu" name="password" id="pwd" class="form-control"><br><?php if (isset($_SESSION['pass_error']) ) echo "<span class='text-danger'>*". $_SESSION['pass_error']."</span>"; ?><br>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="rpwd" class="col-sm-offset-2 col-sm-2 control-label">Mật khẩu</label>
 			<div class="col-sm-4">
-				<input type="password" placeholder="Nhập lại mật khẩu" name="repassword" id="rpwd" class="form-control"><br><?php if (isset($_SESSION['repass_error'])) echo "<span class='error'>*". $_SESSION['repass_error']."</span>"; ?><br>
+				<input type="password" placeholder="Nhập lại mật khẩu" name="repassword" id="rpwd" class="form-control"><br><?php if (isset($_SESSION['repass_error'])) echo "<span class='text-danger'>*". $_SESSION['repass_error']."</span>"; ?><br>
 			</div>
 		</div>
 		<div class="form-group">
@@ -44,3 +44,8 @@
 	</form>
 	</div>	
 </body>
+<?php
+	unset($_SESSION['repass_error']);
+	unset($_SESSION['user_error']);
+	unset($_SESSION['pass_error']);
+?>

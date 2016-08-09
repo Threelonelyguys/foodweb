@@ -10,7 +10,7 @@
 	<div class="main-body">
 	<ul class="list-group">
 		<?php 
-			if ($_POST['search']){
+			if (isset($_POST['search'])){
 				$num=0;
 				while ($row = $find_in_foods->fetch_assoc()){
 					$num++;

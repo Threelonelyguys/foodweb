@@ -4,8 +4,8 @@
 	require "./template/sidenav.php";
 	require_once "../control/search.php";
 	$userid=$_SESSION['userid']; 
-	$num=$_GET['n'];
-	$time=$_GET['t'];
+	$num=(isset($_GET['n']))? $_GET['n']:0;
+	$time=(isset($_GET['t']))? $_GET['t']:1;
 	$control=isset($_GET['c'])? $_GET['c']:0;
 ?>
 
@@ -24,7 +24,7 @@
 	 </form>
 	<ul class="list-group">
 		<?php 
-			if ($_POST['search']){
+			if (isset($_POST['search'])){
 				while ($row = $find_in_dishes->fetch_assoc()){
 					echo "<li class='list-group-item'><a href='./dish_page.php?i=".$row['dishid']."'>$row[dishname]</a>";
 					if (isset($_SESSION['userid'])){

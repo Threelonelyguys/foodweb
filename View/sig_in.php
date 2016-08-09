@@ -37,3 +37,8 @@
 	</div>
 	</form>
 </body>
+<?php
+	unset($_SESSION['repass_error']);
+	unset($_SESSION['user_error']);
+	unset($_SESSION['pass_error']);
+?>

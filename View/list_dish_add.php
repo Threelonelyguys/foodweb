@@ -21,7 +21,7 @@
 	 </form>
 	 <ul class="list-group">
 		<?php 
-			if ($_POST['search']){
+			if (isset($_POST['search'])){
 				while ($row = $find_in_foods->fetch_assoc()){
 					echo "<li class='list-group-item'><a href='./food_page.php?i=".$row['foodid']."'>$row[foodvname]</a>";
 					echo "<form action='../control/dishadd.php?i=$dishid&f=".$row['foodid']."' method='post' class='form-inline' style='float:right;color:black'>";
