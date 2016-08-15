@@ -4,14 +4,9 @@
 	require "./template/sidenav.php";
 ?>
 <html>
-<style>
-	.form-group{
-		background:rgba(0,0,0,.6)
-	}
-</style>
 <body>
 	<form action="../user/sigin.php" class="form-horizontal" method="post" role="form">
-	<div class="form-body">
+	<div class="main-body">
 		<div class="form-group">
 			<div class="col-sm-offset-4">
 				<h2>Đăng nhập</h2><br>
@@ -31,7 +26,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-4 col-sm-10" style="margin-bottom:2%">
-			  <button type="submit" class="btn btn-default">Đăng nhập</button>
+			  <button type="submit" class="btn btn-success">Đăng nhập</button>
 			</div>
 		</div>
 	</div>

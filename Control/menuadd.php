@@ -13,7 +13,7 @@
 		check_table($num);
 		$query="INSERT INTO `menu` (`userid`,`day` ,`time`,`dishid`) VALUES ($userid, '$daystring', $time, $dishid)";
 		$result=$database->query($query);
-		header("LOCATION: ../view/menu_edit_day.php?n=$num&t=$time&c=$control");
+		header("LOCATION: ../view/menu_edit.php?n=$num&t=$time&c=$control");
 	} else{
 		check_table(0);
 		$query="INSERT INTO `create_menu` (`userid`, `num`, `time`, `dishid`, `create_at`) VALUES ($userid, $num,$time,$dishid,'$daystring')";

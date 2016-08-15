@@ -17,7 +17,7 @@
 <body>
 	<div class="main-body">
 	<?php
-		if ($numdif!=00){
+		if ($numdif>=100){
 			echo "<div style='margin-bottom:5%;background:red;'>";
 			echo "<h4 class='text-warning col-sm-offset-1 col-sm-8'>Bạn đã sử dụng thực đơn hơn 100 ngày bạn có muốn tiếp tục hay sử dụng thực đơn mới?</h4>";
 			echo "<a href='./menu_create.php'><button class='btn btn-success col-sm-1'>Tạo mới</button></a>";

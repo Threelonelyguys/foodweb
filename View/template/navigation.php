@@ -4,6 +4,7 @@
 	}
 	require_once "../model/connection.php";
 	require_once "../config/config.php";
+	require_once "../control/userinfo.php";
 	date_default_timezone_set('Asia/Ho_Chi_Minh');
 ?>
 <html>
@@ -68,10 +69,6 @@
 					echo "<li><a href='./sig_in.php' style='color:white'><span class='glyphicon glyphicon-log-in'></span> Đăng nhập</a></li>";
 					echo "<li><a href='./register.php' style='color:white'><span class='glyphicon glyphicon-log-in'></span> Đăng ký</a></li>";
 				} else{
-					$query="SELECT * FROM `user` WHERE `userid`=$_SESSION[userid]";
-					$result=$database->query($query);
-					$row=$result->fetch_assoc();
-					$username=$row['username'];
 					echo "<li><a href='./user_page.php' style='color:white'><span class='glyphicon glyphicon-log-in'></span> ". $username."</a></li>";
 					echo "<li><a href='../user/logout.php' style='color:white'><span class='glyphicon glyphicon-log-in'></span> Đăng xuất</a></li>";
 				}

@@ -14,7 +14,7 @@
 		check_table($num);
 		$query="DELETE FROM `menu` WHERE `menuid`=$menuid && `userid`=$userid && `day`='$daystring' && `time`=$time && `dishid`=$dishid";
 		$database->query($query);
-		header("LOCATION: ../view/menu_edit_day.php?n=$num&t=$time&c=$control");
+		header("LOCATION: ../view/menu_edit.php?n=$num&t=$time&c=$control");
 	} else{			
 		$query="DELETE FROM `create_menu` WHERE `userid`=$userid && `num`=$num && `time`=$time && `dishid`=$dishid";
 		$result=$database->query($query);

@@ -35,19 +35,6 @@
 					echo "</form>";
 					echo "</li>";
 				}
-				while ($row = $find_in_cfoods->fetch_assoc()){
-					echo "<li class='list-group-item'><a href='./food_page.php?i=".$row['foodid']."&c=1'>$row[foodvname]</a>";
-					echo "<form action='../control/dishadd.php?i=$dishid&f=".$row['foodid']."&c=1' method='post' class='form-inline' style='float:right;color:black'>";
-					echo "<div class='form-group'>
-							<input type='text' placeholder='khối lượng' name='weigh'>
-						  </div>";
-					echo "<div class='form-group'>
-							<input type='text' placeholder='đơn vị' name='unit'>
-						  </div>";
-					echo "<button type='submit' class='btn btn-default'>Cập nhật</button>";
-					echo "</form>";
-					echo "</li>";
-				}
 			}
 		?>
 	</ul>

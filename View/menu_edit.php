@@ -10,14 +10,21 @@
 	check_table($num);
 	//require "../control/menushowone.php";
 	show_create_menu($num,$time);
+	require_once "../control/userinfo.php";
 ?>
 <html>
+<style>
+</style>
 <body>
 	<div class="main-body">
-		<h1><?php if ($control==1) echo $day_in_week[$date]." ngày ".$day." tháng ".$month." năm ".$year; else
-			 echo "Thực đơn ngày $num"?></h1>
+		<a href=<?php if ($control==1) echo "./menu_edit_day.php?n=$num"; else echo "./menu_create.php"?>><button class='btn btn-default'>Quay lại</button></a>
+		<h1><?php if ($control==1) echo $time_in_day[$time]." ".$day_in_week[$date]." ngày ".$day." tháng ".$month." năm ".$year; else
+			 echo "Thực đơn ".$time_in_day[$time]." "."ngày $num"?></h1>
 		<ol>
-		<?php
+		<table class="table table-background">
+		<tr>
+		<td class="col-sm-4"><?php
+			$energy=0;
 			while ($row=$result->fetch_assoc()){
 				$dishid=$row['dishid'];
 				if ($control==1) $id=$row['menuid'];
@@ -25,16 +32,74 @@
 				$result1=$database->query($query);
 				if ($row1=$result1->fetch_assoc()){	
 					$dishname=$row1['dishname'];
-					echo "<li style='margin-bottom:2%'><a href='./food_page.php?i=".$dishid."'>$dishname</a>";	
+					$energy+=$row1['energy'];
+					echo "<li style='margin-bottom:5%'><a href='./dish_page.php?i=".$dishid."'>$dishname</a>";	
 					echo "<a href='../control/delete.php?";
 					if ($control==1) echo "&i=$id&";
-					echo "n=$num&t=$time&d=$dishid&c=$control' style='float:right'><button class='btn btn-success'>Xóa</button></a></li>";
+					echo "n=$num&t=$time&d=$dishid&c=$control' style='float:right'><button class='btn btn-success' class='col-sm-1'>Xóa</button></a></li>";
 				}
 			}
-			echo "<a href='./menu_add.php?n=$num&t=$time&c=$control'><span class='glyphicon glyphicon-plus-sign'></span> Thêm món ăn</a></td>";
 		?>
+		<p class="text-success">Tổng số năng lượng: <span style="color:white;"><?php echo $energy;?> KCal</span></p>
+		</td>
+		<td class="col-sm-2">
+		</td>
+		<td class="col-sm-6">
+		<ul class="nav nav-tabs">
+		  <li class="active"><a data-toggle="tab" href="#suggest">Món ăn gợi ý</a></li>
+		  <li><a data-toggle="tab" href="#yours">Món ăn của bạn</a></li>
+		</ul>
+
+		<div class="tab-content">
+		  <div id="suggest" class="tab-pane fade in active">
+			<ul class="list-group">
+			<div id="suggest-dish-group">
+				<?php require "../control/suggest-food.php";?>
+			</div>
+			<li class="list-group-item" style='background:rgba(0,0,0,.8);padding-bottom:2%'>
+				<button id="suggprevious" class='btn btn-success'>Trước</button>
+				<button id="suggnext" class='btn btn-success' style="float:right">Tiếp</button>
+			</li>
+			</ul>
+		  </div>
+		  <div id="yours" class="tab-pane fade">
+			<h3>Menu 1</h3>
+			<p>Some content in menu 1.</p>
+		  </div>
+		</div>
+		</td>
+		</tr>
 		</ol>
-	<a href=<?php if ($control==1) echo "./menu_edit_day.php?n=$num"; else echo "./menu_create.php"?>><button class='btn btn-default'>Quay lại</button></a>
+		</table>
 	</div>
 </body>
+	<script>
+		var p=0;
+		var numpage=10;
+		var n=<?php echo $num;?>;
+		var t=<?php echo $time;?>;
+		var c=<?php echo $control;?>;
+		$("#suggprevious").click(function(){
+			if (p>0) p--;
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					document.getElementById("suggest-dish-group").innerHTML = xmlhttp.responseText;
+				}
+			};
+			xmlhttp.open("GET", "../control/suggest-food.php?p="+p+"&n="+n+"&t="+t+"&c="+c, true);
+			xmlhttp.send();
+			});
+		$("#suggnext").click(function(){
+			if (p<numpage-1) p++;
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					document.getElementById("suggest-dish-group").innerHTML = xmlhttp.responseText;
+				}
+			};
+			xmlhttp.open("GET", "../control/suggest-food.php?p="+p+"&n="+n+"&t="+t+"&c="+c, true);
+			xmlhttp.send();
+		});
+	</script>
 </html>
