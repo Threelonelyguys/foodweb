@@ -9,6 +9,7 @@
 	$i=0;
 	$dishname=array();
 	$dishid=array();
+	$text=array();
 	while ($suggest_food = $suggest_food_result->fetch_assoc()){
 		$dishname[$i] = $suggest_food['dishname'];
 		$dishid[$i] = $suggest_food['dishid'];
@@ -25,5 +26,5 @@
 				<a href='../control/menuadd.php?n=$num&t=$time&i=".$dishid[$j*9+$k]."&c=$control' style='float:right;margin-top:-1%'><button class='btn btn-success'>Thêm</button></a></li>";
 		}
 	}
-	if ($_SERVER['REQUEST_METHOD']=="GET")echo $text[$page];
+	if ($_SERVER['REQUEST_METHOD']=="GET")echo isset($text[$page])? $text[$page]:"<li class='list-group-item'>Không có thực phẩm gợi ý</li>";
 ?>

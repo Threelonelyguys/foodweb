@@ -45,6 +45,8 @@
 				<ul class="dropdown-menu" aria-labelledby="dLabel">
 					<li><a href="./menu_show.php">Thực đơn hôm nay</a></li>
 					<li><a href="./menu_show_week.php">Thực đơn tuần này</a></li>
+					<?php if (isset($_SESSION['userid']))
+						echo "<li><a href='./custom_dish_show.php'>Món ăn của bạn</a></li>";?>
 				 </ul>
 			</li>
 			<li><a href="./menu_create.php">Tạo thực đơn</a></li>

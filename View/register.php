@@ -38,7 +38,9 @@
 				<input type="password" placeholder="Nhập lại mật khẩu" name="repassword" id="rpwd" class="form-control"><br><?php if (isset($_SESSION['repass_error'])) echo "<span class='text-danger'>*". $_SESSION['repass_error']."</span>"; ?><br>
 			</div>
 		</div>
+		
 		<div class="form-group">
+			
 			<label for="age" class="col-sm-offset-2 col-sm-2 control-label">Tuổi</label>
 			<div class="col-sm-1">
 			<input type="number" min="1" max="100" name="age" class="form-control text-center" value="20">

@@ -29,22 +29,30 @@
 	</tr>
 	<tr>
 	<?php
+		$energy=0;
 		for ($i=1;$i<=5;$i++){
 			show($i);
 			echo "<td><ol>";
 			while ($row=$result->fetch_assoc()){
 				$dishid=$row['dishid'];
+				if ($dishid==0) $dishid=$row['custom_dish_id'];
 				$query="SELECT * FROM `master_dish` WHERE `dishid`=$dishid";
+				if ($row['dishid']==0) $query="SELECT * FROM `custom_dish` WHERE `dishid`=$dishid";
 				$result1=$database->query($query);
-				$row1=$result1->fetch_assoc();
-				$dishname=$row1['dishname'];
-				echo "<li><a href='./dish_page.php?i=$dishid' class='ingredient'>$dishname</a></li>";
+				if ($row1=$result1->fetch_assoc()){
+					if ($row['dishid']==0) $energy+=$row1['customenergy']; else $energy+=$row1['energy'];
+					if ($row['dishid']==0) $dishname=$row1['foodname']; 
+						else $dishname=$row1['dishname'];
+					if ($row['dishid']==0) echo "<li class='text-left'><a href='./custom_dish_page.php?i=".$dishid."'  class='ingredient'>$dishname</a></li><br>"; else
+					echo "<li class='text-left'><a href='./dish_page.php?i=".$dishid."'  class='ingredient'>$dishname</a></li><br>";	
+				}
 			}
 			echo "</ol></td>";
 		}
 	?>
 	</tr>
 	</table>
+	<p class="text-success">Tổng số năng lượng: <span style="color:white"><?php echo $energy;?> KCal</span></p>
 	<a href="./menu_edit_day.php?n=<?php echo $numday;?>" style="float:right"><button class="btn btn-success">Chỉnh sửa</button></a>
 	</div>
 </body>

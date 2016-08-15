@@ -56,10 +56,14 @@
 					$result=$database->query($query);
 					while ($row=$result->fetch_assoc()){
 						$dishid=$row['dishid'];
+						if ($dishid==0) $dishid=$row['custom_dish_id'];
 						$query="SELECT * FROM `master_dish` WHERE `dishid`=$dishid";
+						if ($row['dishid']==0) $query="SELECT * FROM `custom_dish` WHERE `dishid`=$dishid";
 						$result1=$database->query($query);
 						if ($row1=$result1->fetch_assoc()){
-							$dishname=$row1['dishname'];
+							if ($row['dishid']==0) $dishname=$row1['foodname']; 
+								else $dishname=$row1['dishname'];
+							if ($row['dishid']==0) echo "<li class='text-left'><a href='./custom_dish_page.php?i=".$dishid."'  class='ingredient'>$dishname</a></li><br>"; else
 							echo "<li class='text-left'><a href='./dish_page.php?i=".$dishid."'  class='ingredient'>$dishname</a></li><br>";	
 						}
 					}

@@ -27,16 +27,23 @@
 			$energy=0;
 			while ($row=$result->fetch_assoc()){
 				$dishid=$row['dishid'];
+				if ($dishid==0) $dishid=$row['custom_dish_id'];
 				if ($control==1) $id=$row['menuid'];
 				$query="SELECT * FROM `master_dish` WHERE `dishid`=$dishid";
+				if ($row['dishid']==0) {
+					$query="SELECT * FROM `custom_dish` WHERE `dishid`=$dishid";
+				}
 				$result1=$database->query($query);
 				if ($row1=$result1->fetch_assoc()){	
-					$dishname=$row1['dishname'];
-					$energy+=$row1['energy'];
-					echo "<li style='margin-bottom:5%'><a href='./dish_page.php?i=".$dishid."'>$dishname</a>";	
+					if ($row['dishid']==0) $dishname = $row1['foodname']; else $dishname=$row1['dishname'];
+					if ($row['dishid']==0) $energy+=$row1['customenergy']; else $energy+=$row1['energy'];
+					if ($row['dishid']==0) echo "<li style='margin-bottom:5%'><a href='./custom_dish_page.php?i=".$dishid."'>$dishname</a>";
+					else echo "<li style='margin-bottom:5%'><a href='./dish_page.php?i=".$dishid."'>$dishname</a>";	
 					echo "<a href='../control/delete.php?";
 					if ($control==1) echo "&i=$id&";
-					echo "n=$num&t=$time&d=$dishid&c=$control' style='float:right'><button class='btn btn-success' class='col-sm-1'>Xóa</button></a></li>";
+					echo "n=$num&t=$time&d=$dishid&c=$control";
+					if ($row['dishid']==0) echo "&cd=1";
+					echo "' style='float:right'><button class='btn btn-success' class='col-sm-1'>Xóa</button></a></li>";
 				}
 			}
 		?>
@@ -63,8 +70,23 @@
 			</ul>
 		  </div>
 		  <div id="yours" class="tab-pane fade">
-			<h3>Menu 1</h3>
-			<p>Some content in menu 1.</p>
+			<ul class="list-group">
+			<?php
+		if(isset($_SESSION['userid'])){
+
+			$query="SELECT * FROM `custom_dish` WHERE `userid`=$_SESSION[userid]";
+			$result=$database->query($query);
+
+			while ($row = $result->fetch_assoc()){
+					echo "<li class='list-group-item'>";
+					echo "<a href='./custom_dish_page.php?i=".$row['dishid']."' style='color:white'>$row[foodname]</a>";
+					echo "<a href='../control/menuadd.php?n=$num&t=$time&i=$row[dishid]&c=$control&cd=1' style='float:right;margin-top:-1%'><button class='btn btn-success'>Thêm</button></a>";
+					echo "</li>";
+			}
+		}
+		echo "<a href='./user_create.php' style='color:white'><button class='btn btn-success'> Tạo món mới</button></a>";
+	?>
+			</ul>
 		  </div>
 		</div>
 		</td>

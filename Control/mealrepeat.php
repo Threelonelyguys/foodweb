@@ -18,7 +18,7 @@
 		}
 	}
 	function repeat_all($numrepeat){
-		global $date,$day,$month,$year,$database,$daystring,$userid,$mealid,$result;
+		global $date,$day,$month,$year,$database,$daystring,$userid,$mealid,$result,$custom_dish_id;
 		for ($i=0;$i<=20;$i++){
 			check_table($i);
 			$query="SELECT * FROM `menu` WHERE `userid`=$userid && `day`='$daystring'";
@@ -43,10 +43,11 @@
 			$dishid=$row['dishid'];
 			$time=$row['time'];
 			$daystring=$row['create_at'];
+			$custom_dish_id=$row['custom_dish_id'];
 			$i=0;
 			do{
 				check_table($num-1+$i*$numrepeat);
-				$query="INSERT INTO `menu` (`userid`,`day`,`time`,`dishid`) VALUES ($userid,'$daystring',$time,$dishid)";
+				$query="INSERT INTO `menu` (`userid`,`day`,`time`,`dishid`,`custom_dish_id`) VALUES ($userid,'$daystring',$time,$dishid,$custom_dish_id)";
 				$database->query($query);
 				$i++;
 			} while ($num-1+$i*$numrepeat<=120);

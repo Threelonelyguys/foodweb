@@ -10,6 +10,7 @@
 	if ($result->num_rows<=0) repeat_all($numrepeat);
 	while ($row=$result->fetch_assoc()){
 		$dishid=$row['dishid'];
+		$custom_dish_id=$row['custom_dish_id'];
 		$time=$row['time'];
 		$num=$row['num'];
 		$daystring=$row['create_at'];
